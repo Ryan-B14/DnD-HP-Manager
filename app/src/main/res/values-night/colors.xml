@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="btn_color">#F4511E</color>
+    <color name="btn_color">#616161</color>
+    <color name="text_color">#CDCDCD</color>
     <color name="gradient_main">#F4511E</color>
     <color name="gradient_edge">#F4511E</color>
     <color name="gradient_start">#000000</color>

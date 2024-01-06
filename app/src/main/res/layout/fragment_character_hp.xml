@@ -150,6 +150,7 @@
                 android:layout_marginVertical="5dp"
                 android:text="@string/calculate"
                 android:backgroundTint="@color/btn_color"
+                android:textColor="@color/text_color"
 
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -109,6 +109,7 @@
                     android:checked="false"
                     android:text="@string/multiclass"
                     android:textSize="30sp"
+                    android:background="@drawable/switch_background"
                     />
             </LinearLayout>
 
@@ -238,6 +239,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/calculate"
+                android:textColor="@color/text_color"
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="center"
                 android:backgroundTint="@color/btn_color"
