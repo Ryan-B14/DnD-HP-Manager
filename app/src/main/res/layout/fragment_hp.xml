@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HpFragment">
+    tools:context=".HpFragment"
+    android:background="@drawable/gradient_background"
+    >
 
     <TextView
         android:id="@+id/tv_manager_title"
@@ -50,6 +52,7 @@
                     android:text="@string/armor_hp"
                     android:textSize="20sp"
                     android:paddingStart="7dp"
+                    android:paddingEnd="0dp"
 
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +82,9 @@
 
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/btn_armor_minus"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:importantForAutofill="no"
+                    tools:ignore="LabelFor" />
 
                 <Button
                     android:id="@+id/btn_armor_minus"
@@ -87,16 +92,19 @@
                     android:layout_height="wrap_content"
                     android:text="@string/minus"
                     android:layout_marginEnd="3dp"
+                    android:backgroundTint="@color/btn_color"
 
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/btn_armor_plus"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
 
                 <Button
                     android:id="@+id/btn_armor_plus"
                     android:layout_width="65dp"
                     android:layout_height="wrap_content"
                     android:text="@string/plus"
+                    android:backgroundTint="@color/btn_color"
 
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -121,6 +129,7 @@
                     android:text="@string/character_hp"
                     android:textSize="18sp"
                     android:paddingStart="7dp"
+                    android:paddingEnd="0dp"
 
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -149,7 +158,10 @@
                     android:gravity="center"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/btn_chp_minus"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:importantForAutofill="no"
+                    tools:ignore="LabelFor"
+                    />
 
                 <Button
                     android:id="@+id/btn_chp_minus"
@@ -158,6 +170,7 @@
                     android:layout_gravity="end"
                     android:text="@string/minus"
                     android:layout_marginEnd="3dp"
+                    android:backgroundTint="@color/btn_color"
 
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/btn_chp_plus"
@@ -169,6 +182,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:text="@string/plus"
+                    android:backgroundTint="@color/btn_color"
 
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -193,6 +207,7 @@
                     android:text="@string/temp_hp"
                     android:textSize="20sp"
                     android:paddingStart="7dp"
+                    android:paddingEnd="0dp"
 
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -221,7 +236,10 @@
                     android:gravity="center"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/btn_temp_minus"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:importantForAutofill="no"
+                    tools:ignore="LabelFor"
+                    />
 
                 <Button
                     android:id="@+id/btn_temp_minus"
@@ -230,6 +248,7 @@
                     android:layout_gravity="end"
                     android:text="@string/minus"
                     android:layout_marginEnd="3dp"
+                    android:backgroundTint="@color/btn_color"
 
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/btn_temp_plus"
@@ -241,6 +260,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:text="@string/plus"
+                    android:backgroundTint="@color/btn_color"
 
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -264,6 +284,7 @@
                     android:text="@string/reset_values"
                     android:layout_marginHorizontal="10dp"
                     android:layout_marginTop="10dp"
+                    android:backgroundTint="@color/btn_color"
 
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -278,6 +299,7 @@
                     android:text="@string/set_values"
                     android:layout_marginHorizontal="10dp"
                     android:layout_marginTop="10dp"
+                    android:backgroundTint="@color/btn_color"
 
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/btn_reset"
@@ -291,6 +313,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
                     android:text="@string/info"
+                    android:backgroundTint="@color/btn_color"
 
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/btn_set_values"
