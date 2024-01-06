@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/calculatorFragment">
+
+    <action
+        android:id="@+id/action_global_go_calc"
+        app:destination="@+id/calculatorFragment"
+        />
+    <action
+        android:id="@+id/action_global_go_chp_fragment"
+        app:destination="@+id/CharacterHpFragment"
+        />
+    <action
+        android:id="@+id/action_global_go_hpm"
+        app:destination="@+id/hpFragment"
+        />
+    <action
+        android:id="@+id/action_global_go_info"
+        app:destination="@+id/infoFragment"
+        />
+
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.dndhpsystem.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+
+    <fragment
+        android:id="@+id/calculatorFragment"
+        android:name="com.example.dndhpsystem.CalculatorFragment"
+        android:label="fragment_calculator"
+        tools:layout="@layout/fragment_calculator" >
+    </fragment>
+    <fragment
+        android:id="@+id/hpFragment"
+        android:name="com.example.dndhpsystem.HpFragment"
+        android:label="fragment_hp"
+        tools:layout="@layout/fragment_hp" >
+    </fragment>
+    <fragment
+        android:id="@+id/CharacterHpFragment"
+        android:name="com.example.dndhpsystem.CharacterHpFragment"
+        android:label="fragment_character_hp"
+        tools:layout="@layout/fragment_character_hp" >
+    </fragment>
+    <fragment
+        android:id="@+id/infoFragment"
+        android:name="com.example.dndhpsystem.InfoFragment"
+        android:label="InfoFragment" />
+</navigation>

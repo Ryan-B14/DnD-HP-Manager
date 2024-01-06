@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">DndHpSystem</string>
+    <string name="armor_hp">Armor Hp:</string>
+    <string name="zero">0</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="character_hp">Character Hp:</string>
+    <string name="play_using_your_new_stats">Play using your new stats</string>
+    <string name="temp_hp">Temp Hp:</string>
+    <string name="info">info</string>
+    <string name="set_values">set values</string>
+    <string name="reset_values">reset values</string>
+    <string name="armor">Armor</string>
+    <string name="character">Character</string>
+    <string name="hp_manager">Hp Manager</string>
+    <string name="max_character_hp_calculator">Max Character Hp Calculator</string>
+    <string name="note_calculate_armor_first">Note: Calculate armor first</string>
+    <string name="base_max_hp_0">Base Max Hp: 0</string>
+    <string name="enter_con_modifier">Enter Con modifier</string>
+    <string name="enter_character_level">Enter character level</string>
+    <string name="tough">Tough?</string>
+    <string name="calculate">Calculate</string>
+    <string name="total_armor_hp">Total Armor Hp:</string>
+    <string name="max_character_hp">Max character Hp:</string>
+    <string name="armor_calculator">Armor Calculator</string>
+    <string name="d6">d6</string>
+    <string name="d8">d8</string>
+    <string name="d10">d10</string>
+    <string name="d12">d12</string>
+    <string name="enter_class_level">Enter class level</string>
+    <string name="multiclass">Multiclass?</string>
+    <string name="select_your_armor_weight_class">Select your armor weight class</string>
+    <string name="note_unarmored_defense_medium">note: unarmored defense = Medium</string>
+    <string name="light">Light</string>
+    <string name="medium">Medium</string>
+    <string name="heavy">Heavy</string>
+    <string name="extra_info">Extra Info</string>
+    <string name="rules">Rules</string>
+    <string name="app_info">App Info</string>
+
+</resources>
