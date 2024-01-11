@@ -2,8 +2,8 @@
 <resources>
     <color name="btn_color">#616161</color>
     <color name="text_color">#CDCDCD</color>
-    <color name="gradient_main">#F4511E</color>
-    <color name="gradient_edge">#F4511E</color>
+    <color name="gradient_main">#DD2C00</color>
+    <color name="gradient_edge">#DD2C00</color>
     <color name="gradient_start">#000000</color>
     <color name="gradient_center">#3A3A3A</color>
 

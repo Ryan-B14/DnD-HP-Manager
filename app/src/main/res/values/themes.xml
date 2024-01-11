@@ -6,4 +6,52 @@
     </style>
 
     <style name="Theme.DndHpSystem" parent="Base.Theme.DndHpSystem" />
+
+    <style name="armor_broke_toast">
+        <item name="stTextBold">true</item>
+        <item name="stTextColor">@color/text_color</item>
+<!--        <item name="stFont">@font/retrofont</item>-->
+        <item name="stTextSize">20sp</item>
+        <item name="stColorBackground">@color/grey</item>
+        <item name="stSolidBackground">true</item>
+        <item name="stStrokeWidth">3dp</item>
+        <item name="stStrokeColor">@color/gradient_start</item>
+        <item name="stIconStart">@drawable/ic_broken_shield</item>
+        <item name="stIconEnd">@drawable/ic_broken_shield</item>
+        <item name="stLength">SHORT</item> LONG or SHORT
+        <item name="stGravity">top</item> top or center
+        <item name="stRadius">5dp</item>
+    </style>
+
+    <style name="temp_hp_lost_toast">
+        <item name="stTextBold">true</item>
+        <item name="stTextColor">@color/black</item>
+        <!--        <item name="stFont">@font/retrofont</item>-->
+        <item name="stTextSize">20sp</item>
+        <item name="stColorBackground">@color/light_blue</item>
+        <item name="stSolidBackground">true</item>
+        <item name="stStrokeWidth">3dp</item>
+        <item name="stStrokeColor">@color/gradient_start</item>
+        <item name="stIconStart">@drawable/ic_broken_temp</item>
+        <item name="stIconEnd">@drawable/ic_broken_temp</item>
+        <item name="stLength">SHORT</item> LONG or SHORT
+        <item name="stGravity">top</item> top or center
+        <item name="stRadius">5dp</item>
+    </style>
+
+    <style name="character_hp_lost_toast">
+        <item name="stTextBold">true</item>
+        <item name="stTextColor">@color/white</item>
+        <!--        <item name="stFont">@font/retrofont</item>-->
+        <item name="stTextSize">20sp</item>
+        <item name="stColorBackground">@color/red</item>
+        <item name="stSolidBackground">true</item>
+        <item name="stStrokeWidth">3dp</item>
+        <item name="stStrokeColor">@color/gradient_start</item>
+        <item name="stIconStart">@drawable/ic_fall</item>
+        <item name="stIconEnd">@drawable/ic_fall</item>
+        <item name="stLength">SHORT</item> LONG or SHORT
+        <item name="stGravity">top</item> top or center
+        <item name="stRadius">5dp</item>
+    </style>
 </resources>
