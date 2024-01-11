@@ -1,11 +1,10 @@
 package com.example.dndhpsystem
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +18,7 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         viewModel = ViewModelProvider(this)[DndViewModel::class.java]
         viewModel.setNavController(navHostFragment)
+        viewModel.sharedPrefs = getSharedPreferences("saveData", Context.MODE_PRIVATE)
 
         viewModel.currentFrag = 1
         setBottomNav()

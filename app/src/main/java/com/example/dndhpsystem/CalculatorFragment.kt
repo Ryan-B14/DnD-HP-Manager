@@ -45,7 +45,9 @@ class CalculatorFragment : Fragment() {
             }
         }
 
-        if (viewModel.totalArmor > 0){
+        viewModel.checkSaveData()
+
+        if ((viewModel.totalArmor.value ?: 0) > 0){
             displayValue()
         }
     }
@@ -191,8 +193,7 @@ class CalculatorFragment : Fragment() {
     }
 
     private fun displayValue() {
-        val text = "Total Armor Hp: ${viewModel.totalArmor}"
+        val text = "Total Armor Hp: ${viewModel.totalArmor.value}"
         view?.findViewById<TextView>(R.id.tv_total_armor)?.text =  text
     }
-
 }

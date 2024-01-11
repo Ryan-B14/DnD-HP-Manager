@@ -49,15 +49,18 @@ class HpFragment : Fragment() {
         getUiViews()
         setClickListeners()
 
-        if (viewModel.currentArmorHp > -1) {
+        if ((viewModel.currentArmorHp.value ?: -1) > -1) {
             displayValues(tvArmor)
         }
-        if (viewModel.currentChp > -1 ) {
+        if ((viewModel.currentChp.value ?: -1) > -1 ) {
             displayValues(tvChar)
         }
-        if (viewModel.currentTempHp > 0) {
+        if ((viewModel.currentTempHp.value ?: 0) > 0) {
             displayValues(tvTempHp)
         }
+
+        setObservers()
+
     }
 
     private fun getUiViews() {
@@ -107,8 +110,8 @@ class HpFragment : Fragment() {
         resetButton.setOnClickListener {
             resetValues()
 
-            tvArmor.text = viewModel.currentArmorHp.toString()
-            tvChar.text = viewModel.currentChp.toString()
+            tvArmor.text = viewModel.currentArmorHp.value.toString()
+            tvChar.text = viewModel.currentChp.value.toString()
             clearInputs()
         }
         setValsBtn.setOnClickListener {
@@ -122,50 +125,44 @@ class HpFragment : Fragment() {
 
     private fun setMaxValues() {
         if (!etArmor.text.isNullOrEmpty() && !etChar.text.isNullOrEmpty()) {
-            viewModel.totalArmor = etArmor.text.toString().toInt()
-            viewModel.maxChp = etChar.text.toString().toInt()
+            viewModel.totalArmor.postValue(etArmor.text.toString().toInt())
+            viewModel.maxChp.postValue(etChar.text.toString().toInt())
 
             resetValues()
         }
         else {
             Toast.makeText(requireContext(), "Armor Hp and Character Hp must contain a value", Toast.LENGTH_LONG).show()
-            StyleableToast.makeText(requireContext(),"",R.style.armor_broke_toast)
         }
     }
 
     private fun resetValues() {
-        viewModel.currentChp  = viewModel.maxChp
-        viewModel.currentArmorHp = viewModel.totalArmor
-
-        displayValues(tvArmor)
-        displayValues(tvChar)
+        viewModel.currentChp.value  = viewModel.maxChp.value
+        viewModel.currentArmorHp.value = viewModel.totalArmor.value
     }
 
     private fun increaseValue(editText: EditText) {
         if (!editText.text.isNullOrEmpty()) {
             when (editText.id) {
                 R.id.et_armor_edit -> {
-                    val tempVal = viewModel.currentArmorHp + editText.text.toString().toInt()
-                    viewModel.currentArmorHp = if (tempVal > viewModel.totalArmor) {
-                        viewModel.totalArmor
-
+                    val tempVal = (viewModel.currentArmorHp.value ?: 0) + editText.text.toString().toInt()
+                    viewModel.currentArmorHp.postValue(if (tempVal > (viewModel.totalArmor.value ?: 0)) {
+                        viewModel.totalArmor.value
                     } else {
                         tempVal
-                    }
-                    displayValues(tvArmor)
+                    })
                 }
                 R.id.et_char_edit -> {
-                    val tempVal = viewModel.currentChp + editText.text.toString().toInt()
-                    viewModel.currentChp = if (tempVal > viewModel.maxChp) {
-                        viewModel.maxChp
+                    val tempVal = (viewModel.currentChp.value ?: 0 ) + editText.text.toString().toInt()
+                    viewModel.currentChp.postValue(if (tempVal > (viewModel.maxChp.value ?: 0)) {
+                        viewModel.maxChp.value
                     } else {
                         tempVal
-                    }
-                    displayValues(tvChar)
+                    })
                 }
                 R.id.et_temp_edit -> {
-                    viewModel.currentTempHp += editText.text.toString().toInt()
-                    displayValues(tvTempHp)
+                    viewModel.currentTempHp.postValue(
+                        (viewModel.currentTempHp.value ?: 0) + editText.text.toString().toInt()
+                    )
                 }
             }
         } else {
@@ -177,33 +174,30 @@ class HpFragment : Fragment() {
         if (!editText.text.isNullOrEmpty()) {
             when (editText.id) {
                 R.id.et_armor_edit -> {
-                    val tempVal = viewModel.currentArmorHp - editText.text.toString().toInt()
+                    val tempVal = (viewModel.currentArmorHp.value ?: 0) - editText.text.toString().toInt()
                     if (tempVal < 0) {
-                        viewModel.currentArmorHp = 0
+                        viewModel.currentArmorHp.postValue(0)
                         damageCarryOver(kotlin.math.abs(tempVal))
                     } else {
-                        viewModel.currentArmorHp = tempVal
+                        viewModel.currentArmorHp.postValue(tempVal)
                     }
-                    displayValues(tvArmor)
                 }
                 R.id.et_char_edit -> {
-                    val tempVal = viewModel.currentChp - editText.text.toString().toInt()
-                    viewModel.currentChp = if (tempVal < 0) {
+                    val tempVal = (viewModel.currentChp.value ?: 0) - editText.text.toString().toInt()
+                    viewModel.currentChp.postValue(if (tempVal < 0) {
                         0
                     } else {
                         tempVal
-                    }
-                    displayValues(tvChar)
+                    })
                 }
                 R.id.et_temp_edit -> {
-                    val tempVal = viewModel.currentTempHp - editText.text.toString().toInt()
+                    val tempVal = (viewModel.currentTempHp.value ?: 0) - editText.text.toString().toInt()
                     if ((tempVal) < 0) {
-                        viewModel.currentTempHp = 0
+                        viewModel.currentTempHp.postValue(0)
                         damageCarryOver(kotlin.math.abs(tempVal))
                     } else {
-                        viewModel.currentTempHp = tempVal
+                        viewModel.currentTempHp.postValue(tempVal)
                     }
-                    displayValues(tvTempHp)
                 }
             }
         } else {
@@ -213,28 +207,25 @@ class HpFragment : Fragment() {
 
     private fun damageCarryOver(damage: Int) {
         var tempVal = 0
-        if (viewModel.currentArmorHp > 0) {
-            tempVal = viewModel.currentArmorHp - damage
+        if ((viewModel.currentArmorHp.value ?: 0 ) > 0) {
+            tempVal = (viewModel.currentArmorHp.value ?: 0) - damage
             if ((tempVal) >= 0) {
-                viewModel.currentArmorHp = tempVal
+                viewModel.currentArmorHp.postValue(tempVal)
             } else  {
-                viewModel.currentArmorHp = 0
-                viewModel.currentChp = if ((viewModel.currentChp - kotlin.math.abs(tempVal)) < 0) {
+                viewModel.currentArmorHp.postValue(0)
+                viewModel.currentChp.postValue(if (((viewModel.currentChp.value ?: 0 ) - kotlin.math.abs(tempVal)) < 0) {
                     0
                 } else {
-                    viewModel.currentChp - kotlin.math.abs(tempVal)
-                }
-                displayValues(tvChar)
+                    (viewModel.currentChp.value ?: 0) - kotlin.math.abs(tempVal)
+                })
             }
-            displayValues(tvArmor)
         } else {
-            tempVal = viewModel.currentChp - damage
-            viewModel.currentChp = if ((tempVal) >= 0) {
+            tempVal = (viewModel.currentChp.value ?: 0 ) - damage
+            viewModel.currentChp.postValue(if ((tempVal) >= 0) {
                 tempVal
             } else {
                 0
-            }
-            displayValues(tvChar)
+            })
         }
     }
 
@@ -242,24 +233,12 @@ class HpFragment : Fragment() {
         when (textView.id) {
             R.id.tv_current_armor -> {
                 textView.text = viewModel.currentArmorHp.toString()
-                if (viewModel.currentArmorHp == 0) {
-//                    Toast.makeText(requireContext(), "Armor broken!", Toast.LENGTH_SHORT).show()
-                    StyleableToast.makeText(requireContext(),"Armor broken!",R.style.armor_broke_toast).show()
-                }
             }
             R.id.tv_current_char_hp -> {
                 textView.text = viewModel.currentChp.toString()
-                if (viewModel.currentChp == 0) {
-//                    Toast.makeText(requireContext(), "Character unconscious!", Toast.LENGTH_SHORT) .show()
-                    StyleableToast.makeText(requireContext(),"Character unconscious!",R.style.character_hp_lost_toast).show()
-                }
             }
             R.id.tv_current_temp_hp -> {
                 textView.text = viewModel.currentTempHp.toString()
-                if (viewModel.currentTempHp == 0) {
-//                    Toast.makeText(requireContext(), "Temp Hp depleted!", Toast.LENGTH_SHORT) .show()
-                    StyleableToast.makeText(requireContext(),"Temp Hp depleted!",R.style.temp_hp_lost_toast).show()
-                }
             }
         }
     }
@@ -268,6 +247,52 @@ class HpFragment : Fragment() {
         etArmor.text = null
         etChar.text = null
         etTempHp.text = null
+    }
+
+    private fun setObservers(){
+        viewModel.totalArmor.observe(viewLifecycleOwner) {
+            viewModel.sharedPrefs.edit().apply {
+                putInt("maxAHP", it)
+                apply()
+            }
+        }
+        viewModel.maxChp.observe(viewLifecycleOwner) {
+            viewModel.sharedPrefs.edit().apply {
+                putInt("maxCHP", it)
+                apply()
+            }
+        }
+
+        viewModel.currentArmorHp.observe(viewLifecycleOwner){
+            tvArmor.text = it.toString()
+            viewModel.sharedPrefs.edit().apply{
+                putInt("currentAHP", it)
+                apply()
+            }
+            if (it == 0) {
+                StyleableToast.makeText(requireContext(),"Armor broken!",R.style.armor_broke_toast).show()
+            }
+        }
+        viewModel.currentChp.observe(viewLifecycleOwner){
+            tvChar.text = it.toString()
+            viewModel.sharedPrefs.edit().apply{
+                putInt("currentCHP", it)
+                apply()
+            }
+            if (it == 0) {
+                StyleableToast.makeText(requireContext(),"Character unconscious!",R.style.character_hp_lost_toast).show()
+            }
+        }
+        viewModel.currentTempHp.observe(viewLifecycleOwner){
+            tvTempHp.text = it.toString()
+            viewModel.sharedPrefs.edit().apply{
+                putInt("currentTHP", it)
+                apply()
+            }
+            if (it == 0) {
+                StyleableToast.makeText(requireContext(),"Temp Hp depleted!",R.style.temp_hp_lost_toast).show()
+            }
+        }
     }
 
 }

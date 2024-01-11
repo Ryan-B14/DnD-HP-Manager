@@ -51,9 +51,8 @@ class CharacterHpFragment : Fragment() {
             view.findViewById<TextView>(R.id.tv_note)?.visibility = View.GONE
         }
 
-        if (viewModel.maxChp > 0){
+        if ((viewModel.maxChp.value ?: 0) > 0){
             displayChp()
-
         }
     }
 
@@ -113,7 +112,7 @@ class CharacterHpFragment : Fragment() {
     }
 
     private fun displayChp() {
-        val text = "Max character Hp: ${viewModel.maxChp}"
+        val text = "Max character Hp: ${viewModel.maxChp.value}"
         view?.findViewById<TextView>(R.id.tv_chr_hp)?.text = text
     }
 
