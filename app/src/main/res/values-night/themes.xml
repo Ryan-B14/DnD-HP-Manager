@@ -2,6 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.DndHpSystem" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
-        <item name="colorPrimary">@color/gradient_main</item>
+        <item name="colorPrimary">@color/app_theme</item>
     </style>
+    <style name="Theme.DndHpSystem" parent="Base.Theme.DndHpSystem" />
 </resources>

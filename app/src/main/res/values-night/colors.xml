@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="btn_color">#616161</color>
+    <color name="app_theme">#7B0000</color>
+    <color name="btn_color">#7B0000</color>
     <color name="text_color">#CDCDCD</color>
     <color name="gradient_main">#DD2C00</color>
     <color name="gradient_edge">#DD2C00</color>
