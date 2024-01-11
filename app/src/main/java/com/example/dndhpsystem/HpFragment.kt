@@ -1,7 +1,6 @@
 package com.example.dndhpsystem
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +8,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.findFragment
-import java.lang.Math.abs
+import io.github.muddz.styleabletoast.StyleableToast
+
 
 class HpFragment : Fragment() {
     /**
@@ -129,6 +129,7 @@ class HpFragment : Fragment() {
         }
         else {
             Toast.makeText(requireContext(), "Armor Hp and Character Hp must contain a value", Toast.LENGTH_LONG).show()
+            StyleableToast.makeText(requireContext(),"",R.style.armor_broke_toast)
         }
     }
 
@@ -195,7 +196,7 @@ class HpFragment : Fragment() {
                     displayValues(tvChar)
                 }
                 R.id.et_temp_edit -> {
-                    var tempVal = viewModel.currentTempHp - editText.text.toString().toInt()
+                    val tempVal = viewModel.currentTempHp - editText.text.toString().toInt()
                     if ((tempVal) < 0) {
                         viewModel.currentTempHp = 0
                         damageCarryOver(kotlin.math.abs(tempVal))
@@ -242,21 +243,22 @@ class HpFragment : Fragment() {
             R.id.tv_current_armor -> {
                 textView.text = viewModel.currentArmorHp.toString()
                 if (viewModel.currentArmorHp == 0) {
-                    Toast.makeText(requireContext(), "Armor broken!", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(requireContext(), "Armor broken!", Toast.LENGTH_SHORT).show()
+                    StyleableToast.makeText(requireContext(),"Armor broken!",R.style.armor_broke_toast).show()
                 }
             }
             R.id.tv_current_char_hp -> {
                 textView.text = viewModel.currentChp.toString()
                 if (viewModel.currentChp == 0) {
-                    Toast.makeText(requireContext(), "Character unconscious!", Toast.LENGTH_SHORT)
-                        .show()
+//                    Toast.makeText(requireContext(), "Character unconscious!", Toast.LENGTH_SHORT) .show()
+                    StyleableToast.makeText(requireContext(),"Character unconscious!",R.style.character_hp_lost_toast).show()
                 }
             }
             R.id.tv_current_temp_hp -> {
                 textView.text = viewModel.currentTempHp.toString()
                 if (viewModel.currentTempHp == 0) {
-                    Toast.makeText(requireContext(), "Temp Hp depleted!", Toast.LENGTH_SHORT)
-                        .show()
+//                    Toast.makeText(requireContext(), "Temp Hp depleted!", Toast.LENGTH_SHORT) .show()
+                    StyleableToast.makeText(requireContext(),"Temp Hp depleted!",R.style.temp_hp_lost_toast).show()
                 }
             }
         }
