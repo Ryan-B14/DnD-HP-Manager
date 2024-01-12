@@ -48,6 +48,16 @@ class HpFragment : Fragment() {
 
         getUiViews()
         setClickListeners()
+        setObservers()
+
+        if (viewModel.newMaxAhpSet == true){
+            viewModel.currentArmorHp.postValue(viewModel.totalArmor.value)
+            viewModel.newMaxAhpSet = false
+        }
+        if (viewModel.newMaxChpSet == true){
+            viewModel.currentChp.postValue(viewModel.maxChp.value)
+            viewModel.newMaxChpSet = false
+        }
 
         if ((viewModel.currentArmorHp.value ?: -1) > -1) {
             displayValues(tvArmor)
@@ -58,9 +68,6 @@ class HpFragment : Fragment() {
         if ((viewModel.currentTempHp.value ?: 0) > 0) {
             displayValues(tvTempHp)
         }
-
-        setObservers()
-
     }
 
     private fun getUiViews() {
@@ -125,8 +132,8 @@ class HpFragment : Fragment() {
 
     private fun setMaxValues() {
         if (!etArmor.text.isNullOrEmpty() && !etChar.text.isNullOrEmpty()) {
-            viewModel.totalArmor.postValue(etArmor.text.toString().toInt())
-            viewModel.maxChp.postValue(etChar.text.toString().toInt())
+            viewModel.totalArmor.value = etArmor.text.toString().toInt()
+            viewModel.maxChp.value = etChar.text.toString().toInt()
 
             resetValues()
         }
@@ -206,7 +213,7 @@ class HpFragment : Fragment() {
     }
 
     private fun damageCarryOver(damage: Int) {
-        var tempVal = 0
+        var tempVal: Int
         if ((viewModel.currentArmorHp.value ?: 0 ) > 0) {
             tempVal = (viewModel.currentArmorHp.value ?: 0) - damage
             if ((tempVal) >= 0) {
@@ -232,13 +239,13 @@ class HpFragment : Fragment() {
     private fun displayValues(textView: TextView) {
         when (textView.id) {
             R.id.tv_current_armor -> {
-                textView.text = viewModel.currentArmorHp.toString()
+                textView.text = viewModel.currentArmorHp.value.toString()
             }
             R.id.tv_current_char_hp -> {
-                textView.text = viewModel.currentChp.toString()
+                textView.text = viewModel.currentChp.value.toString()
             }
             R.id.tv_current_temp_hp -> {
-                textView.text = viewModel.currentTempHp.toString()
+                textView.text = viewModel.currentTempHp.value.toString()
             }
         }
     }
@@ -264,7 +271,7 @@ class HpFragment : Fragment() {
         }
 
         viewModel.currentArmorHp.observe(viewLifecycleOwner){
-            tvArmor.text = it.toString()
+            displayValues(tvArmor)
             viewModel.sharedPrefs.edit().apply{
                 putInt("currentAHP", it)
                 apply()
@@ -274,7 +281,7 @@ class HpFragment : Fragment() {
             }
         }
         viewModel.currentChp.observe(viewLifecycleOwner){
-            tvChar.text = it.toString()
+            displayValues(tvChar)
             viewModel.sharedPrefs.edit().apply{
                 putInt("currentCHP", it)
                 apply()
@@ -284,7 +291,7 @@ class HpFragment : Fragment() {
             }
         }
         viewModel.currentTempHp.observe(viewLifecycleOwner){
-            tvTempHp.text = it.toString()
+            displayValues(tvTempHp)
             viewModel.sharedPrefs.edit().apply{
                 putInt("currentTHP", it)
                 apply()
@@ -293,6 +300,7 @@ class HpFragment : Fragment() {
                 StyleableToast.makeText(requireContext(),"Temp Hp depleted!",R.style.temp_hp_lost_toast).show()
             }
         }
+
     }
 
 }

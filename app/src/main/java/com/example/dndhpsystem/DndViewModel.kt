@@ -8,6 +8,8 @@ import androidx.navigation.fragment.NavHostFragment
 
 class DndViewModel : ViewModel() {
     var navController: NavController? = null
+    var newMaxAhpSet: Boolean = false
+    var newMaxChpSet: Boolean = false
     var currentFrag = 0
     var baseArmor = 0
     val totalArmor: MutableLiveData<Int> by lazy {
@@ -44,16 +46,17 @@ class DndViewModel : ViewModel() {
         val armorBonus = getArmorBonus(baseArmor, armorBonusPercent)
 
         totalArmor.postValue(baseArmor + armorBonus)
-        currentArmorHp.postValue(totalArmor.value ?: -1)
+        newMaxAhpSet = true
+//        currentArmorHp.postValue(totalArmor.value ?: -1)
 
         sharedPrefs.edit().apply{
             putInt("maxAHP", totalArmor.value ?: 0)
             apply()
         }
-        sharedPrefs.edit().apply{
-            putInt("currentAHP", currentArmorHp.value ?: 0)
-            apply()
-        }
+//        sharedPrefs.edit().apply{
+//            putInt("currentAHP", currentArmorHp.value ?: 0)
+//            apply()
+//        }
     }
 
     private fun getBaseArmorValue(hd: Int, cl: Int, mcHD: Int, mcCL: Int): Int {
@@ -84,6 +87,7 @@ class DndViewModel : ViewModel() {
                 maxChp.postValue(baseArmor + ((conMod  * conPN) * charLvl))
             }
             currentChp.postValue(maxChp.value ?: -1)
+            newMaxChpSet = true
             sharedPrefs.edit().apply{
                 putInt("maxCHP", maxChp.value ?: 0)
                 apply()

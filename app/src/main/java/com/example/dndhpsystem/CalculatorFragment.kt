@@ -50,6 +50,7 @@ class CalculatorFragment : Fragment() {
         if ((viewModel.totalArmor.value ?: 0) > 0){
             displayValue()
         }
+        setObserver()
     }
 
     /**
@@ -195,5 +196,15 @@ class CalculatorFragment : Fragment() {
     private fun displayValue() {
         val text = "Total Armor Hp: ${viewModel.totalArmor.value}"
         view?.findViewById<TextView>(R.id.tv_total_armor)?.text =  text
+    }
+
+    private fun setObserver(){
+        viewModel.totalArmor.observe(viewLifecycleOwner) {
+            displayValue()
+            viewModel.sharedPrefs.edit().apply {
+                putInt("maxAHP", it)
+                apply()
+            }
+        }
     }
 }

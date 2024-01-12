@@ -54,6 +54,7 @@ class CharacterHpFragment : Fragment() {
         if ((viewModel.maxChp.value ?: 0) > 0){
             displayChp()
         }
+        setObserver()
     }
 
     /**
@@ -79,11 +80,10 @@ class CharacterHpFragment : Fragment() {
 
         //make sure +/- is checked
         if (rbtnPositive.isChecked || rbtnNegative.isChecked) {
-            if (rbtnNegative.isChecked){
-                conPN = -1
-            }
-            else {
-                conPN = 1
+            conPN = if (rbtnNegative.isChecked){
+                -1
+            } else {
+                1
             }
             //get and validate con mod and char level
             if (!etCon?.text.isNullOrEmpty() &&
@@ -114,6 +114,16 @@ class CharacterHpFragment : Fragment() {
     private fun displayChp() {
         val text = "Max character Hp: ${viewModel.maxChp.value}"
         view?.findViewById<TextView>(R.id.tv_chr_hp)?.text = text
+    }
+
+    private fun setObserver() {
+        viewModel.maxChp.observe(viewLifecycleOwner) {
+            displayChp()
+            viewModel.sharedPrefs.edit().apply {
+                putInt("maxCHP", it)
+                apply()
+            }
+        }
     }
 
 }
