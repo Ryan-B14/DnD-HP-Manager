@@ -183,7 +183,7 @@ class HpFragment : Fragment() {
                 R.id.et_armor_edit -> {
                     val tempVal = (viewModel.currentArmorHp.value ?: 0) - editText.text.toString().toInt()
                     if (tempVal < 0) {
-                        viewModel.currentArmorHp.postValue(0)
+                        viewModel.currentArmorHp.value = 0
                         damageCarryOver(kotlin.math.abs(tempVal))
                     } else {
                         viewModel.currentArmorHp.postValue(tempVal)
@@ -213,7 +213,7 @@ class HpFragment : Fragment() {
     }
 
     private fun damageCarryOver(damage: Int) {
-        var tempVal: Int
+        val tempVal: Int
         if ((viewModel.currentArmorHp.value ?: 0 ) > 0) {
             tempVal = (viewModel.currentArmorHp.value ?: 0) - damage
             if ((tempVal) >= 0) {
