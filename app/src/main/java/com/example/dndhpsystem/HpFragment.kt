@@ -19,21 +19,22 @@ class HpFragment : Fragment() {
      */
 
     val viewModel by activityViewModels<DndViewModel>()
-    lateinit var etArmor: EditText
-    lateinit var etChar: EditText
-    lateinit var etTempHp: EditText
-    lateinit var tvArmor: TextView
-    lateinit var tvChar: TextView
-    lateinit var tvTempHp: TextView
-    lateinit var armorPlus: Button
-    lateinit var armorMinus: Button
-    lateinit var charPlus: Button
-    lateinit var charMinus: Button
-    lateinit var tempPlus: Button
-    lateinit var tempMinus: Button
-    lateinit var resetButton: Button
-    lateinit var setValsBtn: Button
-    lateinit var infoBtn: Button
+    private var justArrived: Boolean = false
+    private lateinit var etArmor: EditText
+    private lateinit var etChar: EditText
+    private lateinit var etTempHp: EditText
+    private lateinit var tvArmor: TextView
+    private lateinit var tvChar: TextView
+    private lateinit var tvTempHp: TextView
+    private lateinit var armorPlus: Button
+    private lateinit var armorMinus: Button
+    private lateinit var charPlus: Button
+    private lateinit var charMinus: Button
+    private lateinit var tempPlus: Button
+    private  lateinit var tempMinus: Button
+    private lateinit var resetButton: Button
+    private lateinit var setValsBtn: Button
+    private lateinit var infoBtn: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +46,8 @@ class HpFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        justArrived = true
 
         getUiViews()
         setClickListeners()
@@ -68,6 +71,11 @@ class HpFragment : Fragment() {
         if ((viewModel.currentTempHp.value ?: 0) > 0) {
             displayValues(tvTempHp)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        justArrived = false
     }
 
     private fun getUiViews() {
@@ -276,7 +284,7 @@ class HpFragment : Fragment() {
                 putInt("currentAHP", it)
                 apply()
             }
-            if (it == 0) {
+            if (it == 0 && !justArrived) {
                 StyleableToast.makeText(requireContext(),"Armor broken!",R.style.armor_broke_toast).show()
             }
         }
@@ -286,7 +294,7 @@ class HpFragment : Fragment() {
                 putInt("currentCHP", it)
                 apply()
             }
-            if (it == 0) {
+            if (it == 0 && !justArrived) {
                 StyleableToast.makeText(requireContext(),"Character unconscious!",R.style.character_hp_lost_toast).show()
             }
         }
@@ -296,7 +304,7 @@ class HpFragment : Fragment() {
                 putInt("currentTHP", it)
                 apply()
             }
-            if (it == 0) {
+            if (it == 0 && !justArrived) {
                 StyleableToast.makeText(requireContext(),"Temp Hp depleted!",R.style.temp_hp_lost_toast).show()
             }
         }
