@@ -9,6 +9,8 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import android.widget.ToggleButton
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import io.github.muddz.styleabletoast.StyleableToast
@@ -37,6 +39,8 @@ class HpFragment : Fragment() {
     private lateinit var setValsBtn: Button
     private lateinit var infoBtn: Button
     private lateinit var abToggle: ToggleButton
+    private lateinit var extrasCard: CardView
+    private lateinit var extrasLayout: ConstraintLayout
     private var maxAhp: Int = 0
 
     override fun onCreateView(
@@ -74,13 +78,17 @@ class HpFragment : Fragment() {
         if ((viewModel.currentTempHp.value ?: 0) > 0) {
             displayValues(tvTempHp)
         }
+
         abToggle.isChecked = viewModel.armorBroken
         if (!viewModel.armorBroken) {
             abToggle.isClickable = false
         } else {
             abToggle.isClickable = true
         }
+
         updateMaxAhp()
+        extrasLayout.visibility = View.GONE
+        extrasCard.layoutParams.height = 30
     }
 
     override fun onResume() {
@@ -106,7 +114,8 @@ class HpFragment : Fragment() {
         tempMinus = requireView().findViewById(R.id.btn_temp_minus)
         infoBtn = requireView().findViewById(R.id.btn_info)
         abToggle = requireView().findViewById(R.id.tb_armor_break)
-
+        extrasCard = requireView().findViewById(R.id.extras_container)
+        extrasLayout = requireView().findViewById(R.id.extras_layout)
     }
 
     private fun setClickListeners() {
@@ -150,6 +159,23 @@ class HpFragment : Fragment() {
         }
         abToggle.setOnClickListener {
             updateArmorStatus()
+        }
+        extrasCard.setOnClickListener{
+            when(extrasLayout.visibility) {
+                View.VISIBLE -> {
+                    extrasLayout.visibility = View.GONE
+                    extrasCard.layoutParams.height = 30
+                }
+                View.INVISIBLE -> {
+                    extrasLayout.visibility = View.VISIBLE
+                    extrasCard.layoutParams.height = 0
+                }
+                View.GONE -> {
+                    extrasLayout.visibility = View.VISIBLE
+                    extrasCard.layoutParams.height = 0
+                }
+            }
+
         }
     }
 
