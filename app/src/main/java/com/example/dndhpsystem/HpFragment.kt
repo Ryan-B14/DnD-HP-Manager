@@ -327,7 +327,9 @@ class HpFragment : Fragment() {
             }
             if (it == 0 && !justArrived) {
                 StyleableToast.makeText(requireContext(),"Armor broken!",R.style.armor_broke_toast).show()
-                updateArmorStatus()
+                if (!viewModel.armorBroken){
+                    updateArmorStatus()
+                }
             }
         }
         viewModel.currentChp.observe(viewLifecycleOwner){
