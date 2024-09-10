@@ -304,8 +304,8 @@
                     android:checked="false"
 
                     android:textColor="@color/text_color"
-                    android:textOff="Intact"
-                    android:textOn="Broken"
+                    android:textOff="@string/intact"
+                    android:textOn="@string/broken"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tv_armor_break"
                     app:layout_constraintTop_toTopOf="parent" />

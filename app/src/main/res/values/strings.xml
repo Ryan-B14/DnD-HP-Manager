@@ -38,5 +38,7 @@
     <string name="rules">Rules</string>
     <string name="app_info">App Info</string>
     <string name="armor_break">Armor Break</string>
+    <string name="intact">Intact</string>
+    <string name="broken">Broken</string>
 
 </resources>
