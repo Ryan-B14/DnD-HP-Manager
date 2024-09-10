@@ -63,6 +63,9 @@ class InfoFragment : Fragment() {
                 "\t\t- Psychic and poison damage temp hp and character hp, never armor hp.  All other damage types follow " +
                 "normal damage flow.\n" +
                 "- Armor inherits the users damage resistances.\n" +
+                "- When Armor reaches 0hp, it breaks!  This means that it can only recover up to half of its usual maximum " +
+                "until it can get properly repaired. It is up to the DM's discretion of what 'properly repaired' means, " +
+                "but usually that means getting worked on by a professional.\n" +
                 "- Light armor gives advantage on dex saves\n" +
                 "- Medium armor gives no bonuses. Mithril variant gives advantage on dex saves.\n" +
                 "- Heavy armor gives disadvantage on dex saves. Mithril variant removes this disadvantage.\n" +
@@ -115,6 +118,8 @@ class InfoFragment : Fragment() {
                 "- If players want to loot armor off creatures, I'd recommend that the armor be damaged. (25%-50% armor hp left)\n" +
                 "- Using mending cantrip can repair armor.  It fully repairs 1 set of armor after an hour of casting.\n" +
                 "- Armored enemies use this system.\n" +
+                "- Heavy damage or certain damage types can break armor without it reaching 0hp. I would recommend waiting until " +
+                "the armor reaches or falls below half hp before ruling that it breaks this way.\n" +
                 "- Heat metal bypasses armor hp and damages temp hp or character hp.\n" +
                 "- When rolling to use a healing item (ark or potion), the remaining recovery amount should still be " +
                 "available to use. \n" +
