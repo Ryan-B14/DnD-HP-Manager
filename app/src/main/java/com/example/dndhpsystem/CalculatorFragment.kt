@@ -104,6 +104,7 @@ class CalculatorFragment : Fragment() {
         }
 
         if (validated){
+            viewModel.armorBroken = false
             collectValues(multiClassed)
         }
     }
@@ -203,7 +204,6 @@ class CalculatorFragment : Fragment() {
             displayValue()
             viewModel.sharedPrefs.edit().apply {
                 putInt("maxAHP", it)
-                viewModel.armorBroken = false
                 apply()
             }
         }
