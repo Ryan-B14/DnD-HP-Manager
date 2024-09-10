@@ -117,7 +117,7 @@ class InfoFragment : Fragment() {
                 "\nOptional rules:\n" +
                 "Leveled armor. Calculate their armor like normal, but use a lower or higher level than the character’s during the calculation.  " +
                 "Character hp should always match their level, but armor hp doesn’t have to. \n" +
-                "\t\t- This rule is under optional rules, but I would highly recommend using it. \n"
+                "\t\t- This rule is under optional rules, but I would highly recommend using it. \n" +
                 "- If players want to loot armor off creatures, I'd recommend that the armor be damaged. (25%-50% armor hp left)\n" +
                 "- Using mending cantrip can repair armor.  It fully repairs 1 set of armor after an hour of casting.\n" +
                 "- Armored enemies use this system.\n" +
