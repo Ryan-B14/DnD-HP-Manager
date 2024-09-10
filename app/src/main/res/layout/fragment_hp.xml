@@ -300,11 +300,15 @@
                     android:id="@+id/tb_armor_break"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/btn_color"
+                    android:checked="false"
 
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/tv_armor_break"
+                    android:textColor="@color/text_color"
+                    android:textOff="Intact"
+                    android:textOn="Broken"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    />
+                    app:layout_constraintStart_toEndOf="@+id/tv_armor_break"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
