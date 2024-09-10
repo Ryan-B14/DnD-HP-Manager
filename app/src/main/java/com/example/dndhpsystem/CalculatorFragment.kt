@@ -123,7 +123,7 @@ class CalculatorFragment : Fragment() {
         val hd = getHitDice()
         var mcCL = -1
         var mcHD = -1
-        var armorBonusPercent = 1.25
+        var armorBonusPercent = 1.0
 
         //get multiclass hit dice and class levels
         if (multiClassed) {
@@ -133,11 +133,11 @@ class CalculatorFragment : Fragment() {
 
         //get armor type
         if (light?.isChecked == true){
-            armorBonusPercent = .75
+            armorBonusPercent = .5
         }else if (medium?.isChecked == true){
-            armorBonusPercent = 1.25
+            armorBonusPercent = 1.0
         }else if (heavy?.isChecked == true){
-            armorBonusPercent = 1.50
+            armorBonusPercent = 1.25
         }
 
         viewModel.calculateValues(hd, cl, mcHD, mcCL, armorBonusPercent)
