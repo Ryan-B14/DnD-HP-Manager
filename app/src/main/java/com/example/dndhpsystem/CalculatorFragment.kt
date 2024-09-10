@@ -203,6 +203,7 @@ class CalculatorFragment : Fragment() {
             displayValue()
             viewModel.sharedPrefs.edit().apply {
                 putInt("maxAHP", it)
+                viewModel.armorBroken = false
                 apply()
             }
         }
