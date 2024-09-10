@@ -37,6 +37,7 @@ class HpFragment : Fragment() {
     private lateinit var setValsBtn: Button
     private lateinit var infoBtn: Button
     private lateinit var abToggle: ToggleButton
+    private var maxAhp: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,11 +56,11 @@ class HpFragment : Fragment() {
         setClickListeners()
         setObservers()
 
-        if (viewModel.newMaxAhpSet == true){
+        if (viewModel.newMaxAhpSet == true){ //used for set values button
             viewModel.currentArmorHp.postValue(viewModel.totalArmor.value)
             viewModel.newMaxAhpSet = false
         }
-        if (viewModel.newMaxChpSet == true){
+        if (viewModel.newMaxChpSet == true){ //used for set values button
             viewModel.currentChp.postValue(viewModel.maxChp.value)
             viewModel.newMaxChpSet = false
         }
@@ -76,7 +77,10 @@ class HpFragment : Fragment() {
         abToggle.isChecked = viewModel.armorBroken
         if (!viewModel.armorBroken) {
             abToggle.isClickable = false
-        } else abToggle.isClickable = true
+        } else {
+            abToggle.isClickable = true
+        }
+        updateMaxAhp()
     }
 
     override fun onResume() {
@@ -163,7 +167,7 @@ class HpFragment : Fragment() {
 
     private fun resetValues() {
         viewModel.currentChp.value  = viewModel.maxChp.value
-        viewModel.currentArmorHp.value = viewModel.totalArmor.value
+        viewModel.currentArmorHp.value = maxAhp
     }
 
     private fun increaseValue(editText: EditText) {
@@ -171,8 +175,8 @@ class HpFragment : Fragment() {
             when (editText.id) {
                 R.id.et_armor_edit -> {
                     val tempVal = (viewModel.currentArmorHp.value ?: 0) + editText.text.toString().toInt()
-                    viewModel.currentArmorHp.postValue(if (tempVal > (viewModel.totalArmor.value ?: 0)) {
-                        viewModel.totalArmor.value
+                    viewModel.currentArmorHp.postValue(if (tempVal > (maxAhp)) {
+                        maxAhp
                     } else {
                         tempVal
                     })
@@ -326,20 +330,29 @@ class HpFragment : Fragment() {
     private fun updateArmorStatus(){
         //true = 'broken' status / false = 'intact' status
         when(viewModel.armorBroken){
-            true -> {
+            true -> { //armor is repaired
                 viewModel.armorBroken = false
                 abToggle.isClickable = false
                 StyleableToast.makeText(requireContext(),"Armor Repaired!",R.style.armor_repaired_toast).show()
             }
-            false -> {
+            false -> { //armor breaks
                 viewModel.armorBroken = true
                 abToggle.isClickable = true
             }
         }
         abToggle.isChecked = viewModel.armorBroken
+        updateMaxAhp()
         viewModel.sharedPrefs.edit().apply{
             putBoolean("armorBreak", viewModel.armorBroken)
             apply()
+        }
+    }
+
+    private fun updateMaxAhp(){
+        maxAhp = if (!viewModel.armorBroken) {
+            viewModel.totalArmor.value ?: 0
+        } else {
+            viewModel.totalArmor.value?.div(2) ?: 0
         }
     }
 
