@@ -12,6 +12,7 @@ class DndViewModel : ViewModel() {
     var newMaxChpSet: Boolean = false
     var currentFrag = 0
     var baseArmor = 0
+    var armorBroken: Boolean = false
     val totalArmor: MutableLiveData<Int> by lazy {
         MutableLiveData<Int>()
     }
@@ -107,6 +108,7 @@ class DndViewModel : ViewModel() {
         currentArmorHp.postValue(currentAHP)
         currentChp.postValue(currentCHP)
         currentTempHp.postValue(currentTHP)
+        armorBroken = sharedPrefs.getBoolean("armorBreak", false)
     }
 
 }
