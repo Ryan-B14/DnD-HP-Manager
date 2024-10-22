@@ -112,7 +112,7 @@
                     android:background="@drawable/switch_background"
                     />
             </LinearLayout>
-
+            <!--Show block only when sw_multiclass is on-->
             <LinearLayout
                 android:id="@+id/multiclass_section"
                 android:layout_width="match_parent"
