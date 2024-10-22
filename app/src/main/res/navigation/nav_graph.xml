@@ -30,9 +30,9 @@
 
     <fragment
         android:id="@+id/calculatorFragment"
-        android:name="com.example.dndhpsystem.CalculatorFragment"
+        android:name="com.example.dndhpsystem.ArmorCalculatorFragment"
         android:label="fragment_calculator"
-        tools:layout="@layout/fragment_calculator" >
+        tools:layout="@layout/fragment_armor_calculator" >
     </fragment>
     <fragment
         android:id="@+id/hpFragment"
