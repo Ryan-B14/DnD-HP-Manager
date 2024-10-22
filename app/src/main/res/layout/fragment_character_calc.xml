@@ -34,43 +34,15 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp">
-            <!--to be deleted, start-->
-            <TextView
-                android:id="@+id/tv_note"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="@string/note_calculate_armor_first"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="7dp"
-
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
-            <TextView
-                android:id="@+id/tv_base_hp_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:hint="@string/base_max_hp_0"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_note"
-                />
-            <!--to be deleted, end-->
             <LinearLayout
                 android:id="@+id/con_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-
+                android:layout_margin="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_base_hp_label"
+                app:layout_constraintTop_toTopOf="parent"
                 >
 
                 <RadioGroup
@@ -104,7 +76,7 @@
                     android:isScrollContainer="true"
                     android:scrollbarAlwaysDrawVerticalTrack="true"
                     android:gravity="center"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginVertical="10dp"
                     android:inputType="number"
                     android:textSize="30sp"
                     android:importantForAutofill="no"
@@ -117,6 +89,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:layout_margin="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/con_container"
@@ -208,6 +181,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:visibility="gone"
+                android:layout_marginHorizontal="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/sw_multiclass_char"
@@ -267,6 +241,7 @@
                     android:importantForAutofill="no" />
 
             </LinearLayout>
+
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/sw_tough"
                 android:layout_width="wrap_content"
@@ -302,7 +277,7 @@
                 android:textSize="25sp"
                 android:hint="@string/max_character_hp"
                 android:layout_marginTop="10dp"
-                android:layout_marginStart="7dp"
+                android:layout_marginHorizontal="5dp"
 
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
