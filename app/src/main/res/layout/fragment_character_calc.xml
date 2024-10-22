@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".CharacterCalculatorFragment"
+    android:background="@drawable/gradient"
+    >
+
+    <TextView
+        android:id="@+id/tv_char_hp_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/max_character_hp_calculator"
+
+        android:textSize="35sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+
+        app:layout_constraintTop_toBottomOf="@+id/tv_char_hp_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <!--to be deleted, start-->
+            <TextView
+                android:id="@+id/tv_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="@string/note_calculate_armor_first"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="7dp"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+            <TextView
+                android:id="@+id/tv_base_hp_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:hint="@string/base_max_hp_0"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_note"
+                />
+            <!--to be deleted, end-->
+            <LinearLayout
+                android:id="@+id/con_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_base_hp_label"
+                >
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    >
+                    <RadioButton
+                        android:id="@+id/rbtn_positive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/plus"
+                        android:textSize="30sp"
+                        android:layout_marginHorizontal="10dp"
+                        />
+                    <RadioButton
+                        android:id="@+id/rbtn_negative"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/minus"
+                        android:textSize="30sp"
+                        android:layout_marginEnd="10dp"
+                        />
+                </RadioGroup>
+
+                <EditText
+                    android:id="@+id/et_con_mod"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/enter_con_modifier"
+                    android:isScrollContainer="true"
+                    android:scrollbarAlwaysDrawVerticalTrack="true"
+                    android:gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:inputType="number"
+                    android:textSize="30sp"
+                    android:importantForAutofill="no"
+                    tools:ignore="LabelFor"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/class_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/con_container"
+                >
+                <RadioGroup
+                    android:id="@+id/rg_hit_dice_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    >
+
+                    <RadioButton
+                        android:id="@+id/rbtn_d6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/d6"
+                        android:textSize="25sp"
+                        android:layout_marginHorizontal="10dp"
+                        android:checked="true"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/rbtn_d8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/d8"
+                        android:textSize="25sp"
+                        android:layout_marginHorizontal="10dp"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/rbtn_d10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/d10"
+                        android:textSize="25sp"
+                        android:layout_marginHorizontal="10dp"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/rbtn_d12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/d12"
+                        android:textSize="25sp"
+                        />
+                </RadioGroup>
+                <EditText
+                    android:id="@+id/et_char_level"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/enter_class_level"
+                    android:isScrollContainer="true"
+                    android:scrollbarAlwaysDrawVerticalTrack="true"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:textSize="30sp"
+                    android:importantForAutofill="no"
+                    tools:ignore="LabelFor"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rg_hit_dice_section"
+                    />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/sw_multiclass_char"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:switchMinWidth="60dp"
+                app:switchPadding="5dp"
+                android:layout_marginVertical="5dp"
+                android:checked="false"
+                android:text="@string/multiclass"
+                android:textSize="30sp"
+                android:background="@drawable/switch_background"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/class_container"
+                />
+            <!--Show block only when sw_multiclass_char is on-->
+            <LinearLayout
+                android:id="@+id/char_multiclass_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sw_multiclass_char"
+                >
+                <RadioGroup
+                    android:id="@+id/rg_mc_hit_dice_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    >
+
+                    <RadioButton
+                        android:id="@+id/rbtn_mc_d6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/d6"
+                        android:textSize="25sp"
+                        android:layout_marginHorizontal="10dp"
+                        android:checked="true"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/rbtn_mc_d8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/d8"
+                        android:textSize="25sp"
+                        android:layout_marginHorizontal="10dp"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/rbtn_mc_d10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/d10"
+                        android:textSize="25sp"
+                        android:layout_marginHorizontal="10dp"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/rbtn_mc_d12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/d12"
+                        android:textSize="25sp"
+                        />
+                </RadioGroup>
+                <EditText
+                    android:id="@+id/et_mc_class_level"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/enter_class_level"
+                    android:textSize="30sp"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:importantForAutofill="no" />
+
+            </LinearLayout>
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/sw_tough"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:switchMinWidth="60dp"
+                app:switchPadding="5dp"
+                android:layout_marginVertical="10dp"
+                android:checked="false"
+                android:text="@string/tough"
+                android:textSize="30sp"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/char_multiclass_container"
+                />
+            <Button
+                android:id="@+id/btn_hp_calc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="@string/calculate"
+                android:backgroundTint="@color/btn_color"
+                android:textColor="@color/text_color"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sw_tough"
+                />
+            <TextView
+                android:id="@+id/tv_chr_hp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:hint="@string/max_character_hp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="7dp"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_hp_calc"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
