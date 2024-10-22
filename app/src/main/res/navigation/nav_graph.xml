@@ -32,7 +32,7 @@
         android:id="@+id/calculatorFragment"
         android:name="com.example.dndhpsystem.ArmorCalculatorFragment"
         android:label="fragment_calculator"
-        tools:layout="@layout/fragment_armor_calculator" >
+        tools:layout="@layout/fragment_armor_calc" >
     </fragment>
     <fragment
         android:id="@+id/hpFragment"
@@ -42,9 +42,9 @@
     </fragment>
     <fragment
         android:id="@+id/CharacterHpFragment"
-        android:name="com.example.dndhpsystem.CharacterHpFragment"
+        android:name="com.example.dndhpsystem.CharacterCalculatorFragment"
         android:label="fragment_character_hp"
-        tools:layout="@layout/fragment_character_hp" >
+        tools:layout="@layout/fragment_character_calc" >
     </fragment>
     <fragment
         android:id="@+id/infoFragment"
