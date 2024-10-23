@@ -48,16 +48,16 @@ class DndViewModel : ViewModel() {
 
         totalArmor.postValue(baseArmor + armorBonus)
         newMaxAhpSet = true
-//        currentArmorHp.postValue(totalArmor.value ?: -1)
+        currentArmorHp.postValue(totalArmor.value ?: -1)
 
-        sharedPrefs.edit().apply{
+        sharedPrefs.edit().apply {
             putInt("maxAHP", totalArmor.value ?: 0)
             apply()
         }
-//        sharedPrefs.edit().apply{
-//            putInt("currentAHP", currentArmorHp.value ?: 0)
-//            apply()
-//        }
+        sharedPrefs.edit().apply{
+            putInt("currentAHP", currentArmorHp.value ?: 0)
+            apply()
+        }
     }
 
     private fun getBaseArmorValue(hd: Int, cl: Int, mcHD: Int, mcCL: Int): Int {
@@ -68,9 +68,9 @@ class DndViewModel : ViewModel() {
         mcCL = class level
         */
         var mcValue = 0
-        val baseValue = (hd/2)* cl
-        if(mcHD > 0 && mcCL > 0) {
-            mcValue = (mcHD/2) * mcCL
+        val baseValue = (hd / 2) * cl
+        if (mcHD > 0 && mcCL > 0) {
+            mcValue = (mcHD / 2) * mcCL
         }
 
         return (baseValue + mcValue)
@@ -80,16 +80,38 @@ class DndViewModel : ViewModel() {
         return kotlin.math.ceil(armorBonusPercent * baseArmor).toInt()
     }
 
-    fun getMaxChp(conMod: Int, conPN: Int, charLvl: Int, tough: Boolean) {
-        if (baseArmor > 0) {
+    fun getMaxChp(
+        conMod: Int,
+        conPN: Int,
+        charLvl: Int,
+        tough: Boolean,
+        mainHd: Int,
+        mcHd: Int,
+        charMcLvl: Int,
+        mcEnabled: Boolean
+    ) {
+        var conVal = conMod * conPN
+        if (!mcEnabled) {
             if (tough) {
-                maxChp.postValue(baseArmor + (((conMod * conPN) + 2) * charLvl))
+                maxChp.postValue(((mainHd + conVal) + 2) * charLvl)
             } else {
-                maxChp.postValue(baseArmor + ((conMod  * conPN) * charLvl))
+                maxChp.postValue((mainHd + conVal) * charLvl)
             }
             currentChp.postValue(maxChp.value ?: -1)
             newMaxChpSet = true
-            sharedPrefs.edit().apply{
+            sharedPrefs.edit().apply {
+                putInt("maxCHP", maxChp.value ?: 0)
+                apply()
+            }
+        } else {
+            if (tough) {
+                maxChp.postValue((((mainHd + conVal) + 2) * charLvl) + (((mcHd + conVal) + 2) * charMcLvl))
+            } else {
+                maxChp.postValue(((mainHd + conVal) * charLvl) + ((mcHd + conVal) * charMcLvl))
+            }
+            currentChp.postValue(maxChp.value ?: -1)
+            newMaxChpSet = true
+            sharedPrefs.edit().apply {
                 putInt("maxCHP", maxChp.value ?: 0)
                 apply()
             }
@@ -110,5 +132,4 @@ class DndViewModel : ViewModel() {
         currentTempHp.postValue(currentTHP)
         armorBroken = sharedPrefs.getBoolean("armorBreak", false)
     }
-
 }
