@@ -18,7 +18,7 @@
     <string name="base_max_hp_0">Base Max Hp: 0</string>
     <string name="enter_con_modifier">Enter Con modifier</string>
     <string name="enter_character_level">Enter character level</string>
-    <string name="tough">Tough?</string>
+    <string name="tough">Tough Feat?</string>
     <string name="calculate">Calculate</string>
     <string name="total_armor_hp">Total Armor Hp:</string>
     <string name="max_character_hp">Max character Hp:</string>

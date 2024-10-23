@@ -56,15 +56,16 @@
                         android:layout_height="match_parent"
                         android:text="@string/plus"
                         android:textSize="30sp"
-                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginEnd="5dp"
                         />
                     <RadioButton
                         android:id="@+id/rbtn_negative"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="@string/minus"
+                        android:textStyle="bold"
                         android:textSize="30sp"
-                        android:layout_marginEnd="10dp"
+                        android:layout_marginEnd="5dp"
                         />
                 </RadioGroup>
 
