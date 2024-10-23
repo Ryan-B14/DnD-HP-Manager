@@ -72,9 +72,9 @@ class CharacterCalculatorFragment : Fragment() {
         var mcEnabled = false
 
         //init variables
-        var conPN: Int //con positive/negative
-        var mainHd: Int = getHitDice() //main hit die
-        var mcHd: Int = getMcHitDice() //multiclass hit die
+        val conPN: Int //con positive/negative
+        val mainHd: Int = getHitDice() //main hit die
+        val mcHd: Int = getMcHitDice() //multiclass hit die
 
         //get tough bool value
         if (toughSwitch?.isChecked == true) {
@@ -93,9 +93,9 @@ class CharacterCalculatorFragment : Fragment() {
                 1
             }
             if (validateInputs(etCon, etLevel, etMcLevel, mcEnabled, conPN)) {
-                var conMod = etCon?.text.toString().toInt()
-                var charLvl = etLevel?.text.toString().toInt()
-                var charMcLvl = if (mcEnabled) {
+                val conMod = etCon?.text.toString().toInt()
+                val charLvl = etLevel?.text.toString().toInt()
+                val charMcLvl = if(mcEnabled) {
                     etMcLevel?.text.toString().toInt()
                 } else {
                     0

@@ -90,7 +90,7 @@ class DndViewModel : ViewModel() {
         charMcLvl: Int,
         mcEnabled: Boolean
     ) {
-        var conVal = conMod * conPN
+        val conVal = conMod * conPN
         if (!mcEnabled) {
             if (tough) {
                 maxChp.postValue(((mainHd + conVal) + 2) * charLvl)
